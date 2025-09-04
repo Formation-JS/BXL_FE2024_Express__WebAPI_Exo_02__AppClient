@@ -1,0 +1,43 @@
+.detail {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0.5em;
+  border: 0.1ch solid black;
+  border-radius: 0.5em;
+
+  .info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .author {
+      font-weight: bold;
+    }
+
+    .date {
+      color: gray;
+    }
+  }
+
+  .msg {
+    font-family: monospace;
+  }
+
+  .hide {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .hide span {
+    width: 1ch;
+    height: 1lh;
+    background-color: transparent;
+  }
+
+  .hide span.letter {
+    background-color: hsl(348, 83%, 30%);
+  }
+
+}

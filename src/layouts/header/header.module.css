@@ -1,0 +1,14 @@
+.header {
+  color: crimson;
+  background-color: gold;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 3.5em;
+  align-items: center;
+  padding: 0.5ch;
+
+  .title {
+    font-size: 1.8em;
+  }
+}
