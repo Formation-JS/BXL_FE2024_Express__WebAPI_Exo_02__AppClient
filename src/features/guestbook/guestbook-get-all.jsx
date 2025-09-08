@@ -12,11 +12,11 @@ export default function GuestbookGetAll() {
     navigate(id.toString());
   }, []);
 
+  // Requete vers le Web API
   const { data, error, isLoading } = useSWR('GuestBook', () => {
     return fetch('http://localhost:8080/api/guestbook').then(res => res.json());
   });
   console.log(data);
-  
 
   return (
     <>
