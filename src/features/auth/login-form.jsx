@@ -13,12 +13,18 @@ export default function LoginForm() {
   async function loginAction(state, formData) {
     const data = Object.fromEntries(formData);
 
-    // TODO Call API for login
-    if (data.email !== 'della@test.be') {
-      return {
-        errorMessage: 'Invalide crédentials !'
-      };
-    }
+    // Call API for login
+    const response = await fetch('http://localhost:8080/api/auth/login', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      }
+    });
+
+    // Extraction des données de la réponse
+    const { token } = await response.json();
+    console.log(token);
 
     // TODO Save JWT in React App
 
