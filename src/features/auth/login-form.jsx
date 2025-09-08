@@ -1,5 +1,7 @@
+import { useSetAtom } from 'jotai';
 import { useActionState, useId } from 'react';
 import { useNavigate } from 'react-router';
+import { tokenAtom } from '../../atoms/token.atom.js';
 
 const initialState = {
   errorMessage: null
@@ -9,6 +11,7 @@ export default function LoginForm() {
 
   const inputId = useId();
   const navigate = useNavigate();
+  const setToken = useSetAtom(tokenAtom);
 
   async function loginAction(state, formData) {
     const data = Object.fromEntries(formData);
@@ -26,11 +29,18 @@ export default function LoginForm() {
     const { token } = await response.json();
     console.log(token);
 
-    // TODO Save JWT in React App
+    if(token) {
+      // Save JWT in React App
+      setToken(token);
+  
+      // Si crédential valide, on redirigre la page "accueil"
+      navigate('/');
+      return state;
+    }
 
-    // Si crédential valide, on redirigre la page "accueil"
-    navigate('/');
-    return state;
+    return {
+      errorMessage: 'Erreur lors de la connexion !'
+    }
   }
 
   const [state, handleLogin, isPending] = useActionState(loginAction, initialState);
